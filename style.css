@@ -1,0 +1,199 @@
+/* ==================== COLOR VARIABLES ==================== */
+/* Defined as CSS custom properties (variables) to maintain consistency throughout the stylesheets */
+:root {
+  --color-primary: #e50914; /* Netflix's iconic red used for primary actions and highlights */
+  --color-background: #141414; /* Deep black background for dark theme aesthetic */
+  --color-secondary-bg: #221f1f; /* Slightly lighter black for secondary backgrounds and contrast */
+  --color-text-primary: #ffffff; /* White text for primary content and readability */
+  --color-text-secondary: #808080; /* Gray text for secondary information and reduced emphasis */
+  --color-hover: #f5f5f1; /* Light color for hover states and interactive elements */
+  --transition-speed: 0.3s ease-in-out; /* Standard animation duration for smooth transitions */
+}
+
+/* ==================== GLOBAL RESET ==================== */
+/* Removes default browser margins and padding for consistent styling across all elements */
+* {
+  margin: 0; /* Removes default element spacing from browser defaults */
+  padding: 0; /* Removes default internal spacing from browser defaults */
+  box-sizing: border-box; /* Includes padding and border in width/height calculations */
+}
+
+/* ==================== GENERAL STYLES ==================== */
+/* Applies default styling rules to the entire document body */
+body {
+  font-family:
+    "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Modern sans-serif font stack for optimal readability */
+  background-color: var(
+    --color-background
+  ); /* Dark background matching Netflix's visual identity */
+  color: var(
+    --color-text-primary
+  ); /* Default white text color for all text content */
+  line-height: 1.6; /* Comfortable spacing between lines for better text readability */
+}
+
+/* ==================== MAIN ==================== */
+/* Centers all content vertically and horizontally on the page using flexbox layout */
+main {
+  min-height: 100vh; /* Ensures main element spans at least the full viewport height */
+  display: flex; /* Enables flexbox layout for flexible content alignment */
+  flex-direction: column; /* Stacks child elements vertically */
+  justify-content: center; /* Centers items vertically along the main axis */
+  align-items: center; /* Centers items horizontally along the cross axis */
+  padding: 2rem; /* Adds internal spacing around the content */
+}
+
+/* Styling for the main heading */
+h1 {
+  font-size: 3.5rem; /* Large heading size for emphasis and visual hierarchy */
+  font-weight: 700; /* Bold weight for stronger visual impact */
+  margin-bottom: 4rem; /* Adds spacing below the heading */
+  text-align: center; /* Centers the text horizontally */
+  letter-spacing: -1px; /* Tightens letter spacing for professional appearance */
+}
+
+/* ==================== PROFILES SECTION ==================== */
+/* Container for all profile cards with responsive grid layout */
+.profiles {
+  display: flex; /* Enables flexbox layout for arranged profile cards */
+  gap: 2rem; /* Creates equal spacing between profile items */
+  flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+  justify-content: center; /* Centers all profile cards horizontally */
+  list-style: none; /* Removes the default bullet points from list items */
+}
+
+/* ==================== PROFILE CARD ==================== */
+/* Individual profile link styling with interactive hover effects */
+.profile {
+  text-decoration: none; /* Removes the underline from links for cleaner appearance */
+  cursor: pointer; /* Changes cursor to pointer to indicate clickable element */
+  transition:
+    transform var(--transition-speed),
+    /* Smoothly animates scale transformations */ filter var(--transition-speed); /* Smoothly animates brightness filter changes */
+}
+
+/* Hover state when user moves mouse over profile card */
+.profile:hover {
+  transform: scale(1.05); /* Enlarges the profile card by 5% for hover effect */
+  filter: brightness(
+    1.2
+  ); /* Increases brightness by 20% to highlight the card */
+}
+
+/* Active state when user clicks on the profile card */
+.profile:active {
+  transform: scale(
+    0.98
+  ); /* Slightly shrinks the card to provide tactile feedback */
+}
+
+/* ==================== FIGURE ==================== */
+/* Container for profile images with rounded corners and overflow handling */
+figure {
+  margin: 0; /* Removes default margin from figure element */
+  position: relative; /* Enables absolute positioning of child elements */
+  overflow: hidden; /* Clips content that extends beyond the figure boundaries */
+  border-radius: 8px; /* Rounds the corners for modern appearance */
+}
+
+/* Styling for profile images within the figure element */
+figure img {
+  display: block; /* Removes inline spacing around the image */
+  width: 150px; /* Sets fixed width for profile picture square */
+  height: 150px; /* Sets fixed height to maintain square aspect ratio */
+  object-fit: cover; /* Scales image to cover area without distortion */
+  border-radius: 8px; /* Rounds image corners to match figure container */
+  transition: transform var(--transition-speed); /* Smoothly animates zoom transformation */
+}
+
+/* Image zoom effect when profile is hovered */
+.profile:hover figure img {
+  transform: scale(1.1); /* Enlarges image by 10% for zoom-in effect */
+}
+
+/* ==================== FIGCAPTION ==================== */
+/* Profile name label positioned at the bottom of image with gradient overlay */
+figcaption {
+  position: absolute; /* Positions caption independently of document flow */
+  bottom: 0; /* Aligns caption to the bottom edge of the image */
+  left: 0; /* Aligns caption to the left edge of the image */
+  right: 0; /* Extends caption to the right edge of the image */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    transparent
+  ); /* Creates dark gradient for text readability */
+  padding: 1.5rem 1rem 1rem; /* Adds spacing inside the caption area */
+  font-size: 0.95rem; /* Slightly smaller font size for secondary text */
+  font-weight: 500; /* Medium weight for better readability */
+  color: var(--color-text-primary); /* White text color for contrast */
+  text-align: center; /* Centers the profile name */
+  opacity: 0; /* Initially hidden, will appear on hover */
+  transition: opacity var(--transition-speed); /* Smoothly fades in and out */
+}
+
+/* Shows caption when profile is hovered */
+.profile:hover figcaption {
+  opacity: 1; /* Makes caption fully visible on hover */
+}
+
+/* ==================== RESPONSIVENESS ==================== */
+/* Tablet breakpoint: adjusts sizes and spacing for medium screens (768px and below) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem; /* Reduces heading size for smaller viewports */
+    margin-bottom: 2.5rem; /* Reduces spacing below heading */
+  }
+
+  .profiles {
+    gap: 1.5rem; /* Reduces spacing between profile cards */
+  }
+
+  figure img {
+    width: 120px; /* Reduces profile image size for tablet screens */
+    height: 120px; /* Maintains square aspect ratio */
+  }
+}
+
+/* Mobile breakpoint: further adjusts sizes for small screens (480px and below) */
+@media (max-width: 480px) {
+  main {
+    padding: 1rem; /* Reduces padding for mobile screens */
+  }
+
+  h1 {
+    font-size: 1.75rem; /* Further reduces heading for mobile devices */
+    margin-bottom: 2rem; /* Reduces bottom margin */
+  }
+
+  .profiles {
+    gap: 1rem; /* Reduces gap between profiles on mobile */
+  }
+
+  figure img {
+    width: 100px; /* Compact size for mobile screens */
+    height: 100px; /* Maintains square aspect ratio */
+  }
+
+  figcaption {
+    font-size: 0.85rem; /* Reduces text size for better mobile fit */
+  }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+/* Respects user's motion preferences by disabling animations for those who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important; /* Sets animations to near-instantaneous */
+    animation-iteration-count: 1 !important; /* Ensures animations don't repeat */
+    transition-duration: 0.01ms !important; /* Sets transitions to near-instantaneous */
+  }
+}
+
+/* ==================== FOCUS FOR KEYBOARD NAVIGATION ==================== */
+/* Provides visual indicator for keyboard navigation accessibility */
+.profile:focus {
+  outline: 3px solid var(--color-primary); /* Creates visible Netflix-red outline for focused element */
+  outline-offset: 4px; /* Adds space between outline and element for clarity */
+  border-radius: 8px; /* Matches the border-radius of profile cards */
+}
