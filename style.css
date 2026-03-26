@@ -128,13 +128,8 @@ figcaption {
   font-weight: 500; /* Medium weight for better readability */
   color: var(--color-text-primary); /* White text color for contrast */
   text-align: center; /* Centers the profile name */
-  opacity: 0; /* Initially hidden, will appear on hover */
+  opacity: 1; /* Always visible */
   transition: opacity var(--transition-speed); /* Smoothly fades in and out */
-}
-
-/* Shows caption when profile is hovered */
-.profile:hover figcaption {
-  opacity: 1; /* Makes caption fully visible on hover */
 }
 
 /* ==================== RESPONSIVENESS ==================== */
@@ -167,7 +162,9 @@ figcaption {
   }
 
   .profiles {
-    gap: 1rem; /* Reduces gap between profiles on mobile */
+    display: grid; /* Changes to grid layout for better 2-column arrangement */
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 equal columns */
+    gap: 2rem; /* Increases gap between profiles on mobile for better spacing */
   }
 
   figure img {
@@ -178,6 +175,35 @@ figcaption {
   figcaption {
     font-size: 0.85rem; /* Reduces text size for better mobile fit */
   }
+}
+
+#theme-toggle {
+  position: absolute; /* Allows the toggle button to be positioned independently of the document flow */
+  top: 1rem; /* Positions the toggle button 1rem from the top of the viewport */
+  right: 1rem; /* Positions the toggle button in the top-right corner of the viewport */
+  z-index: 10; /* Ensures the toggle button appears above all other content */
+  background: none; /* Removes default button background for a clean look */
+  border: none; /* Removes default button styling for a clean look */
+  font-size: 2rem; /* Large size for easy tapping on mobile devices */
+  cursor: pointer; /* Indicates the button is interactive */
+}
+
+body.light-mode {
+  background: #f5f5f5;
+  color: #222;
+}
+
+.light-mode .profile {
+  color: #222;
+}
+
+.light-mode img {
+  background: #eee;
+  border: 1px solid #ccc;
+}
+
+.light-mode img:hover {
+  border: 1px solid #222;
 }
 
 /* ==================== ACCESSIBILITY ==================== */
@@ -193,7 +219,12 @@ figcaption {
 /* ==================== FOCUS FOR KEYBOARD NAVIGATION ==================== */
 /* Provides visual indicator for keyboard navigation accessibility */
 .profile:focus {
-  outline: 3px solid var(--color-primary); /* Creates visible Netflix-red outline for focused element */
-  outline-offset: 4px; /* Adds space between outline and element for clarity */
-  border-radius: 8px; /* Matches the border-radius of profile cards */
+  outline: none; /* Removes default outline */
+}
+
+/* Focus and active states with primary color border */
+.profile:focus figure,
+.profile:active figure {
+  border: 4px solid var(--color-primary); /* Adds Netflix-red border around profile when selected */
+  box-shadow: 0 0 12px rgba(229, 9, 20, 0.5); /* Adds subtle red glow effect */
 }
